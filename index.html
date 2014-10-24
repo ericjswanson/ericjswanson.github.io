@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link href="../CSS/foundation.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map_canvas');
+        var mapOptions = {
+			center: new google.maps.LatLng(42.333002, -83.046705),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  	<style>
+      #map_canvas {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+    
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map_canvas');
+        var mapOptions = {
+          center: new google.maps.LatLng(42.333125, -83.046710),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>    
+    <div class="container">
+  <header>
+      	<span class="navbar-left">UXU</span>
+        <ul class="navbar-right">
+        	<li>Motivate</li>
+            <li>Create</li>
+            <li>Grow</li>
+        </ul>
+        <h1 class="page-header text-center">User Exerpeience University</h1>
+  <h2 class="text-center">StreamLine your createive process.</h2>
+               <div class="center">
+   					<button>Get Started</button>
+		          	<button>Discover</button>
+           </div>
+	</div>         
+    </header>
+      <section>
+      	<p id="enticing">enticing</p>
+      </section>
+      <section>
+      	<p id="buzzing">buzzing</p>
+      </section>
+      <section>
+      	<h2>Stay in the loop</h2>
+      </section>
+      <section>
+      	<p>Social Bar</p>
+      </section>
+      <section>
+      	<h2>Learn with Experts</h2>
+      </section>
+      <section>
+      	<h2>Curious? <span>Ask away!</span></h2>
+      </section>
+      <section>
+      	<h2>Get to Know Us</h2>
+        <div id="map_canvas"></div>
+      </section>
+    </div>     
+  
+  <script type="text/javascript">
+
+     (function($){
+        $.getJSON("../json/SomethingEnticing.json").done(function(response){
+			var enticing = [];
+			$.each(response, function( key, property) {
+				if ($.isPlainObject(property)) {
+					$.each(property, function( index, value) {
+						enticing.push(value);
+					})
+				} else {
+					enticing.push(property);
+				}
+			});
+				
+			document.getElementById("enticingTitle").innerHTML = enticing.title;
+        });
+
+         $.getJSON("../json/WhatsBuzzing.json").done(function(response){
+            
+			$("#buzzing").html(response);
+        });
+
+     })(jQuery);       
+
+    </script>
+  </body>
+</html>
